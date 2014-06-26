@@ -46,3 +46,5 @@ fi
 
 # load rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+
+[[ -s "~/.git-completion" ]] && source "$HOME/.git-completion"
