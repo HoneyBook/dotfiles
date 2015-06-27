@@ -264,5 +264,5 @@ function start_agent {
 
 function title ()
 {
-  echo -ne "\ek$1\e\\"
+  echo -n -e "\033]0;"$@"\007"
 }
