@@ -261,3 +261,8 @@ function start_agent {
   . "${SSH_ENV}" > /dev/null
   /usr/bin/ssh-add ~/.ssh/elad;
 }
+
+function title ()
+{
+  echo -ne "\ek$1\e\\"
+}
