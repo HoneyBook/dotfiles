@@ -9,7 +9,7 @@ dot_files = %x[ find #{home} -type f -maxdepth 1 -name '.*' ].split("\n")
 excluded_files = %w( 
   DS_Store pgpass APKey.plist bash_history guard_history irb-history 
   mysql_history pry_history psql_history rediscli_history Rhistory 
-  sh_history meteorsession netrc pearrc s3cfg 
+  sh_history meteorsession netrc pearrc s3cfg lesshst
   viminfo Xauthority).map { |e| e = "#{home}/.#{e}" }
 
 files = dot_files - excluded_files
@@ -24,7 +24,7 @@ exit unless HighLine.agree("Continue? ")
 # copy
 files.each do |f|
   basename = File.basename(f).gsub(/^\./,"")
-  FileUtils.cp(f, "#{backup_folder}/#{basename}")
+  FileUtils.cp(f, "#{backup_folder}/#{basename}", verbose: true)
 end
 
 puts "\ndone.\n"

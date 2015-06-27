@@ -15,7 +15,7 @@ exit unless HighLine.agree("Continue? ")
 
 # copy
 dot_files.each do |f|
-  FileUtils.cp(f, "#{home}/.#{File.basename(f).gsub(/^\./,"")}", :noop => true, :verbose => true)
+  FileUtils.cp(f, "#{home}/.#{File.basename(f).gsub(/^\./,"")}", :verbose => true)
 end
 
 puts "\ndone.\n"
