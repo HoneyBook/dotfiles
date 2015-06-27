@@ -40,11 +40,22 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
-# load amazon keys
-[ -f "$HOME/.vidit" ] && source "$HOME/.vidit"
-[ -f "$HOME/.honeybook" ] && source "$HOME/.honeybook"
-
 # load rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
-[[ -s "~/.git-completion" ]] && source "$HOME/.git-completion"
+[[ -f "$HOME/.git-completion" ]] && source "$HOME/.git-completion"
+
+# ssh-agent
+SSH_ENV="$HOME/.ssh/environment"
+
+# Source SSH settings, if applicable
+if [ -f "${SSH_ENV}" ]; then
+  . "${SSH_ENV}" > /dev/null
+  #ps ${SSH_AGENT_PID} doesn't work under cywgin
+  ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+    start_agent;
+  }
+else
+  # see .function file
+  start_agent;
+fi
